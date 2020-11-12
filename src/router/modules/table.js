@@ -8,33 +8,33 @@ const tableRouter = {
   redirect: '/table/complex-table',
   name: 'Table',
   meta: {
-    title: 'Table',
-    icon: 'table'
+    title: '用户管理',
+    icon: 'user'
   },
   children: [
     {
       path: 'dynamic-table',
       component: () => import('@/views/table/dynamic-table/index'),
-      name: 'DynamicTable',
-      meta: { title: 'Dynamic Table' }
+      name: '用户管理',
+      meta: { title: '用户管理' }
     },
     {
       path: 'drag-table',
       component: () => import('@/views/table/drag-table'),
-      name: 'DragTable',
-      meta: { title: 'Drag Table' }
+      name: '用户列表',
+      meta: { title: '用户列表' }
     },
     {
       path: 'inline-edit-table',
       component: () => import('@/views/table/inline-edit-table'),
-      name: 'InlineEditTable',
-      meta: { title: 'Inline Edit' }
+      name: '用户组管理',
+      meta: { title: '用户组管理' }
     },
     {
       path: 'complex-table',
       component: () => import('@/views/table/complex-table'),
-      name: 'ComplexTable',
-      meta: { title: 'Complex Table' }
+      name: '组权限管理',
+      meta: { title: '组权限管理' }
     }
   ]
 }

@@ -1,9 +1,11 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
-
-      <div class="title-container">
-        <h3 class="title">Login Form</h3>
+       
+      <div class="title-container" style="text-align:center">
+        <img :src="logo" style="width:82px">
+        <h2 style="color:white">{{title}}</h2>
+        
       </div>
 
       <el-form-item prop="username">
@@ -45,22 +47,7 @@
         </el-form-item>
       </el-tooltip>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-
-      <div style="position:relative">
-        <div class="tips">
-          <span>Username : admin</span>
-          <span>Password : any</span>
-        </div>
-        <div class="tips">
-          <span style="margin-right:18px;">Username : editor</span>
-          <span>Password : any</span>
-        </div>
-
-        <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
-          Or connect with
-        </el-button>
-      </div>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
     </el-form>
 
     <el-dialog title="Or connect with" :visible.sync="showDialog">
@@ -76,10 +63,10 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
-
+import logo from '@/assets/logo.png'
 export default {
   name: 'Login',
-  components: { SocialSign },
+  components: { SocialSign},
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -107,6 +94,8 @@ export default {
       passwordType: 'password',
       capsTooltip: false,
       loading: false,
+      logo: logo,
+      title : "V作业调度系统",
       showDialog: false,
       redirect: undefined,
       otherQuery: {}

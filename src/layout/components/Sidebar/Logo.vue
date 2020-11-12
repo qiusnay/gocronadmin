@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import logo from '@/assets/logo.png'
 export default {
   name: 'SidebarLogo',
   props: {
@@ -24,8 +25,8 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Element Admin',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: 'V作业调度系统',
+      logo: logo
     }
   }
 }
@@ -55,8 +56,8 @@ export default {
     width: 100%;
 
     & .sidebar-logo {
-      width: 32px;
-      height: 32px;
+      width: 42px;
+      height: 42px;
       vertical-align: middle;
       margin-right: 12px;
     }

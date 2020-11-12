@@ -4,6 +4,7 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
+        :default-openeds="['/permission','/charts', '/table']"
         :collapse="isCollapse"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
