@@ -1,27 +1,28 @@
-import { login, logout, getInfo } from '@/api/user'
+import { dologin, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
 const state = {
   token: getToken(),
   name: '',
-  avatar: '',
-  introduction: '',
+  email: '',
+  userid: '',
   roles: []
+  
 }
 
 const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token
   },
-  SET_INTRODUCTION: (state, introduction) => {
-    state.introduction = introduction
+  SET_USERID: (state, userid) => {
+    state.userid = userid
   },
   SET_NAME: (state, name) => {
     state.name = name
   },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
+  SET_Email: (state, email) => {
+    state.email = email
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -33,7 +34,7 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      dologin({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
@@ -53,18 +54,17 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-
-        const { roles, name, avatar, introduction } = data
-
+        console.log(data)
+        const { id, username, email, user_code } = data
         // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
+        if (!user_code || user_code.length <= 0) {
           reject('getInfo: roles must be a non-null array!')
         }
 
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        commit('SET_INTRODUCTION', introduction)
+        commit('SET_ROLES', ["admin"])
+        commit('SET_NAME', username)
+        commit('SET_Email', email)
+        commit('SET_USERID', id)
         resolve(data)
       }).catch(error => {
         reject(error)
